@@ -1,0 +1,1 @@
+GRANT ALL ON TABLE mktpl.person TO person_domain;

@@ -1,0 +1,6 @@
+{
+    "watch": ["packages/person/src"],
+    "ext": ".ts,.js",
+    "ignore": [],
+    "exec": "ts-node packages/person/src/runtime.ts"
+}

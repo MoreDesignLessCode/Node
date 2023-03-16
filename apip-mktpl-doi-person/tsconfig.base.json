@@ -1,0 +1,33 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "esnext",
+        "lib": ["es2017", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@procter-gamble/apip-mktpl-doi-person": [
+                "packages/person/src/index.ts"
+            ],
+            "@procter-gamble/apip-mktpl-doi-person-sdk": [
+                "packages/sdk/src/index.ts"
+            ],
+            "@procter-gamble/apip-mktpl-doi-person-types": [
+                "packages/types/src/index.ts"
+            ]
+        }
+    },
+    "exclude": ["node_modules", "tmp"],
+    "excludeFiles": ["*.md"],
+    "files": [],
+    "include": []
+}

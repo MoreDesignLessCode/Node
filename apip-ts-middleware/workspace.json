@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "context": "packages/context",
+    "jwt": "packages/jwt"
+  }
+}

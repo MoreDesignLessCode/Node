@@ -1,0 +1,6 @@
+{
+    "watch": ["packages/"],
+    "ext": ".ts,.js",
+    "ignore": [],
+    "exec": "yarn build && ts-node demos/runtime.ts"
+}
