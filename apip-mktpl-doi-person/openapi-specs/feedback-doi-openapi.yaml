@@ -4,7 +4,6 @@ info:
   version: 1.0.0
   description: Domain object interface for the Feedback microservice
   contact:
-    email: gupta.p.23@pg.com
     name: Pankaj Gupta
 servers:
   - url: 'http://localhost:3000'
