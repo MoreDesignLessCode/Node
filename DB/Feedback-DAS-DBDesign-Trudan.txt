@@ -1,0 +1,93 @@
+Table Ticket {
+ id uuid
+ createdBy uuid
+ createdAt timestamp
+ modifiedBy uuid
+ modifiedAt timestamp
+ deletedBy uuid
+ deletedAt timestamp
+}
+Table Status {
+ id uuid
+ name string //NEW, ASSIGNED, PENDING, RESOLVED, UNRESOLVED, (REVIEW & REPLY), RESPONSIBLE, ACCOUNTABLE, CONSULTED, INFORMED
+ createdBy uuid
+ createdAt timestamp
+ modifiedBy uuid
+ modifiedAt timestamp
+ deletedBy uuid
+ deletedAt timestamp
+}
+Table Participants {
+ id uuid
+profileId uuid
+ artifactId uuid [ref: > Artifacts.id]
+ status string [ref: > Status.id]
+ createdBy uuid
+ createdAt timestamp
+ modifiedBy uuid
+ modifiedAt timestamp
+ deletedBy uuid
+ deletedAt timestamp
+}
+Table Messages {
+ id uuid
+ artifactId uuid [ref: > Artifacts.id]
+ summary string // Will be null for reviews & replies
+ description string // Actual message or review
+ status string [ref: > Status.id]
+ createdBy uuid
+ createdAt timestamp
+ modifiedBy uuid
+ modifiedAt timestamp
+ deletedBy uuid
+ deletedAt timestamp
+}
+Table Attachments {
+ id uuid
+messageId uuid [ref: > Messages.id]
+ name string
+ url string
+ mimeType string
+ createdBy uuid
+ createdAt timestamp
+ modifiedBy uuid
+ modifiedAt timestamp
+ deletedBy uuid
+ deletedAt timestamp
+}
+Table Ratings { // Can be given for all artifacts except ticket
+ id uuid
+ artifactId uuid [ref: > Artifacts.id]
+ rating float
+ createdAt datetime // datetime that the record was created
+ modifiedAt datetime // datetime that the record is considered modified
+ deletedAt datetime // datetime that the records is considered "deleted"
+ createdBy uuid // uuuid of the profile
+ modifiedBy uuid // uuid of the profile
+ deletedBy uuid //uuid of the person who deleted the record
+}
+Table Artifacts {
+ id uuid
+ refValue string //API-ID, TICKET-ID, DOCUMENT-ID, PAGE-ID, ORG-ID, THEME-ID
+ refType string //API, TICKET, DOCUMENT, PAGE, ORG, THEME
+ tagIds string[]
+ createdBy uuid
+ createdAt timestamp
+ modifiedBy uuid
+ modifiedAt timestamp
+ deletedBy uuid
+ deletedAt timestamp
+}
+
+// Outside of Feedback domain. Kept here just for visualization
+
+Table Tags_For_Reference_Only {
+ id uuid
+ name string // urn:com:pg:mktpl:category:registration
+ createdBy uuid
+ createdAt timestamp
+ modifiedBy uuid
+ modifiedAt timestamp
+ deletedBy uuid
+ deletedAt timestamp
+}

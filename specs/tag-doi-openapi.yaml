@@ -1,0 +1,293 @@
+openapi: 3.0.3
+x-stoplight:
+  id: dyty6jvt81iem
+info:
+  title: Tag-doi
+  version: 1.0.0
+  description: Domain object interface for the Tag microservice
+  contact:
+    name: Pankaj Gupta
+servers:
+  - url: 'http://localhost:3000'
+tags:
+  - name: Tags
+paths:
+  /tags:
+    post:
+      tags:
+        - Tags
+      summary: create a Tag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  reference:
+                    type: string
+                    example: 'urn:com:pg:api:developer:tags:v1:<id>'
+        description: ''
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          $ref: '#/components/responses/tags'
+      operationId: post-a-tag
+    get:
+      tags:
+        - Tags
+      summary: get all tags
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/paging.offset'
+        - $ref: '#/components/parameters/paging.limit'
+        - $ref: '#/components/parameters/filter.id'
+        - $ref: '#/components/parameters/filter.type'
+        - $ref: '#/components/parameters/filter.reference'
+        - $ref: '#/components/parameters/filter.name'
+        - $ref: '#/components/parameters/filter.description'
+      responses:
+        '200':
+          $ref: '#/components/responses/tags'
+      operationId: get-all-tags
+    parameters: []
+  '/tags/{tagId}':
+    get:
+      tags:
+        - Tags
+      summary: get all tags
+      security:
+        - bearerAuth: []
+      parameters: []
+      responses:
+        '200':
+          $ref: '#/components/responses/tags'
+      operationId: get-all-tags-by-id
+    parameters:
+      - schema:
+          type: string
+        name: tagId
+        in: path
+        required: true
+    patch:
+      tags:
+        - Tags
+      summary: ''
+      operationId: patch-tags
+      responses:
+        '200':
+          $ref: '#/components/responses/tags'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                reference:
+                  type: string
+                description:
+                  type: string
+        description: ''
+    delete:
+      tags:
+        - Tags
+      summary: ''
+      operationId: delete-tags
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: tagId
+          description: tag to be delete
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  parameters:
+    paging.limit:
+      name: paging.limit
+      in: query
+      description: Limits the number of returned results
+      required: false
+      schema:
+        type: integer
+        format: int32
+    paging.offset:
+      name: paging.offset
+      in: query
+      description: Offset from which start returned results
+      required: false
+      schema:
+        type: integer
+        format: int32
+    filter.id:
+      name: filter.id
+      in: query
+      explode: true
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      description: list of Ids to be used as filter
+    filter.name:
+      name: filter.name
+      in: query
+      explode: true
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      description: list of names to be used as filter
+    filter.type:
+      name: filter.type
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      description: list of type to be used as filter
+    filter.description:
+      name: filter.description
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      description: list of descriptions to be used as filter
+    filter.reference:
+      name: filter.reference
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      description: list of references to be used as filter
+  responses:
+    tags:
+      description: Tag response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/tags'
+              meta:
+                $ref: '#/components/schemas/meta'
+    success:
+      description: Successful response
+      content:
+        application/json:
+          examples:
+            Example 1: {}
+  schemas:
+    tags:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          createdBy:
+            type: string
+          description:
+            type: string
+          type:
+            type: string
+          reference:
+            type: string
+      x-examples:
+        Example 1:
+          - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+            createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+            name: payroll
+            description: description of the tag
+            type: tag/namespace/domain/etc
+            reference: 'urn:com:pg:api:developer:tags:v1:<id>'
+    meta:
+      type: object
+      properties:
+        paging:
+          type: object
+          properties:
+            limit:
+              type: integer
+            offset:
+              type: integer
+            total:
+              type: integer
+        sorting:
+          type: object
+          properties:
+            asc:
+              type: array
+              items:
+                type: string
+            desc:
+              type: array
+              items:
+                type: string
+        fields:
+          type: object
+          properties:
+            omitted:
+              type: array
+              items:
+                type: string
+            requested:
+              type: array
+              items:
+                type: string
+        filters:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              operator:
+                type: string
+              value:
+                type: string
+      x-examples:
+        Example 1:
+          paging:
+            limit: 0
+            offset: 0
+            total: 0
+          sorting:
+            asc:
+              - string
+            desc:
+              - string
+          fields:
+            omitted:
+              - string
+            requested:
+              - string
+          filters:
+            property1:
+              operator: string
+              value: string
+            property2:
+              operator: string
+              value: string

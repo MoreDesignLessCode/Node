@@ -1,0 +1,28 @@
+
+
+Table Tags{
+ id uuid
+ name string 
+ description string
+ typeId uuid [ref: > Type.id]// Can be null
+ referenceId uuid [ref: > Tags.id] // Can be null
+ createdBy uuid
+ createdAt timestamp
+ modifiedBy uuid
+ modifiedAt timestamp
+ deletedBy uuid
+ deletedAt timestamp
+}
+
+
+
+Table Type{
+ id uuid
+ name string // Domain, Platform, Tags, namespace, sub-domain
+ createdBy uuid
+ createdAt timestamp
+ modifiedBy uuid
+ modifiedAt timestamp
+ deletedBy uuid
+ deletedAt timestamp
+}

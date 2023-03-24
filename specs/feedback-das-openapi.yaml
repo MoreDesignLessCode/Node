@@ -1,0 +1,811 @@
+openapi: 3.0.3
+x-stoplight:
+  id: 9l98054mj0dsl
+info:
+  title: Feedback-das
+  version: 1.0.0
+  description: Data object interface for the Feedback microservice
+  contact:
+    name: Pankaj Gupta
+servers:
+  - url: 'http://localhost:3000'
+tags:
+  - name: Tickets
+  - name: Messages
+  - name: Attachments
+  - name: Ratings
+paths:
+  /tickets:
+    post:
+      tags:
+        - Tickets
+      summary: create a Ticket
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  participants:
+                    $ref: '#/components/schemas/participants'
+                  message:
+                    type: object
+                    properties:
+                      summary:
+                        type: string
+                      description:
+                        type: string
+                      reference:
+                        type: string
+                        example: 'urn:com:pg:api:developer:feedback:v1:<resourceType>:<id>'
+                      attachmentIDs:
+                        type: array
+                        items:
+                          type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+        description: ''
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          $ref: '#/components/responses/tickets'
+      operationId: post-a-ticket
+    get:
+      tags:
+        - Tickets
+      summary: get all Tickets
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/paging.offset'
+        - $ref: '#/components/parameters/paging.limit'
+        - $ref: '#/components/parameters/includes'
+        - $ref: '#/components/parameters/filter.id'
+      responses:
+        '200':
+          $ref: '#/components/responses/tickets'
+      operationId: get-all-tickets
+    parameters: []
+    patch:
+      tags:
+        - Tickets
+      summary: ''
+      operationId: patch-tickets
+      responses:
+        '200':
+          $ref: '#/components/responses/tickets'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                participants:
+                  $ref: '#/components/schemas/participants'
+        description: ''
+    delete:
+      tags:
+        - Tickets
+      summary: ''
+      operationId: delete-tickets
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: ticketId
+          description: Ticket to be delete
+  /messages:
+    post:
+      tags:
+        - Messages
+      summary: create a message
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  summary:
+                    type: string
+                  description:
+                    type: string
+                  artifactIdValue:
+                    type: string
+                  artifactType:
+                    type: string
+                  attachments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                  tags:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+      security:
+        - bearerAuth: []
+      responses:
+        '201':
+          $ref: '#/components/responses/messages'
+    get:
+      tags:
+        - Messages
+      summary: ''
+      operationId: get-messages
+      responses:
+        '200':
+          $ref: '#/components/responses/messages'
+      parameters:
+        - $ref: '#/components/parameters/paging.offset'
+        - $ref: '#/components/parameters/paging.limit'
+        - $ref: '#/components/parameters/filter.id'
+        - $ref: '#/components/parameters/includes'
+        - $ref: '#/components/parameters/filter.artifactType'
+        - $ref: '#/components/parameters/filter.artifactIdValue'
+    patch:
+      tags:
+        - Messages
+      summary: ''
+      operationId: patch-messages
+      responses:
+        '200':
+          $ref: '#/components/responses/messages'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                summary:
+                  type: string
+                description:
+                  type: string
+                status:
+                  $ref: '#/components/schemas/assignmentStatus'
+                attachments:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+    delete:
+      tags:
+        - Messages
+      summary: ''
+      operationId: delete-messages
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: messageId
+  /attachments:
+    parameters: []
+    get:
+      summary: ''
+      operationId: get-attachments
+      responses:
+        '200':
+          $ref: '#/components/responses/attachments'
+      tags:
+        - Attachments
+      parameters:
+        - $ref: '#/components/parameters/paging.offset'
+        - $ref: '#/components/parameters/paging.limit'
+        - $ref: '#/components/parameters/filter.messageId'
+        - $ref: '#/components/parameters/filter.id'
+    post:
+      tags:
+        - Attachments
+      summary: ''
+      operationId: post-attachments
+      responses:
+        '200':
+          $ref: '#/components/responses/attachments'
+      requestBody:
+        content:
+          multipart/mixed:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                  file:
+                    type: string
+                    format: binary
+        description: ''
+    patch:
+      tags:
+        - Attachments
+      summary: ''
+      operationId: patch-attachments-attachmentId
+      responses:
+        '200':
+          $ref: '#/components/responses/attachments'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                id:
+                  type: string
+    delete:
+      summary: ''
+      operationId: delete-attachments
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: attachmentId
+  /attachments/download:
+    parameters: []
+    get:
+      tags:
+        - Attachments
+      summary: ''
+      description: ''
+      operationId: get-attachments-attachmentId
+      responses:
+        '200':
+          description: Attachment
+          content:
+            multipart/mixed:
+              schema:
+                type: string
+                format: binary
+                description: the file binary streamed response
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: url
+  /ratings:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - Ratings
+      responses:
+        '200':
+          $ref: '#/components/responses/ratings'
+      operationId: get-ratings
+      parameters:
+        - $ref: '#/components/parameters/includes'
+        - $ref: '#/components/parameters/paging.limit'
+        - $ref: '#/components/parameters/paging.offset'
+        - $ref: '#/components/parameters/filter.id'
+    post:
+      tags:
+        - Ratings
+      summary: ''
+      operationId: post-ratings
+      responses:
+        '201':
+          $ref: '#/components/responses/ratings'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  rating:
+                    type: string
+                  participants:
+                    $ref: '#/components/schemas/participants'
+                  message:
+                    type: object
+                    properties:
+                      summary:
+                        type: string
+                      description:
+                        type: string
+                      attachments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                  tags:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+    patch:
+      tags:
+        - Ratings
+      summary: ''
+      operationId: patch-ratings
+      responses:
+        '200':
+          $ref: '#/components/responses/ratings'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+                rating:
+                  type: string
+                participants:
+                  $ref: '#/components/schemas/participants'
+    delete:
+      tags:
+        - Ratings
+      summary: ''
+      operationId: delete-ratings
+      responses:
+        '200':
+          $ref: '#/components/responses/success'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: ratingId
+      description: ''
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  parameters:
+    paging.limit:
+      name: paging.limit
+      in: query
+      description: Limits the number of returned results
+      required: false
+      schema:
+        type: integer
+        format: int32
+    paging.offset:
+      name: paging.offset
+      in: query
+      description: Offset from which start returned results
+      required: false
+      schema:
+        type: integer
+        format: int32
+    includes:
+      name: includes
+      in: query
+      explode: true
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+          enum:
+            - tags
+            - messages
+            - attachments
+            - profiles
+      description: Detailed information to be included
+    filter.id:
+      name: filter.id
+      in: query
+      explode: true
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      description: list of Ids to be used as filter
+    filter.messageId:
+      name: filter.messageId
+      in: query
+      explode: true
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      description: list of Ids to be used as filter
+    filter.artifactType:
+      name: filter.artifactType
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      description: list of Ids to be used as filter
+    filter.artifactIdValue:
+      name: filter.artifactIdValue
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+      description: list of Ids to be used as filter
+  responses:
+    tickets:
+      description: ticket response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdBy:
+                      type: string
+                    summary:
+                      type: string
+                    description:
+                      type: string
+                    messageIds:
+                      type: array
+                      items:
+                        type: string
+                    attachmentIds:
+                      type: array
+                      items:
+                        type: string
+                    participants:
+                      $ref: '#/components/schemas/participants'
+                    tagsId:
+                      type: array
+                      items:
+                        type: string
+              includes:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/messages'
+                  attachments:
+                    $ref: '#/components/schemas/attachments'
+          examples:
+            Example 1:
+              value:
+                data:
+                  - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                    createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                    summary: apiforcreatingpayrollforeachmonth
+                    description: aapiisneededtoevaluatingandcreatingpayrollforeachmonth
+                    messageIds:
+                      - fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                    attachmentIds:
+                      - fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                    participants:
+                      - profileId: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                        createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                        status: ASSIGNED
+                    tagsId:
+                      - fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                includes:
+                  messages:
+                    - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      summary: apiforcreatingpayrollforeachmonth
+                      status: NEW
+                      createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      description: description apiforcreatingpayrollforeachmonth
+                      attachmentIds:
+                        - fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                  tags:
+                    - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      name: payroll
+                  profiles:
+                    - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                  attachments:
+                    - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      createdBy: 562943d7-b4a6-4c64-b50c-88996cb0e856
+                      fileName: error.pdf
+                      url: url-info
+                      mimetype: application/pdf
+    messages:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/messages'
+              includes:
+                type: object
+                properties:
+                  attachments:
+                    $ref: '#/components/schemas/attachments'
+          examples:
+            Example 1:
+              value:
+                data:
+                  - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                    summary: apiforcreatingpayrollforeachmonth
+                    status: NEW
+                    createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                    description: description apiforcreatingpayrollforeachmonth
+                    attachmentIds:
+                      - fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                includes:
+                  attachments:
+                    - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      createdBy: 562943d7-b4a6-4c64-b50c-88996cb0e856
+                      fileName: error.pdf
+                      url: url-info
+                      mimetype: application/pdf
+    attachments:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/attachments'
+          examples:
+            Example 1:
+              value:
+                data:
+                  - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                    createdBy: 562943d7-b4a6-4c64-b50c-88996cb0e856
+                    fileName: error.pdf
+                    url: url-info
+                    mimetype: application/pdf
+    ratings:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    createdBy:
+                      type: string
+                    rating:
+                      type: string
+                    messageIds:
+                      type: array
+                      items:
+                        type: string
+                    attachmentIds:
+                      type: array
+                      items:
+                        type: string
+                    participants:
+                      $ref: '#/components/schemas/participants'
+                    tagsId:
+                      type: array
+                      items:
+                        type: string
+              includes:
+                type: object
+                properties:
+                  messages:
+                    $ref: '#/components/schemas/messages'
+                  tags:
+                    $ref: '#/components/schemas/tags'
+                  profiles:
+                    $ref: '#/components/schemas/profiles'
+                  attachments:
+                    $ref: '#/components/schemas/attachments'
+          examples:
+            Example 1:
+              value:
+                data:
+                  - rating: '4'
+                    id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                    createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                    summary: apiforcreatingpayrollforeachmonth
+                    description: aapiisneededtoevaluatingandcreatingpayrollforeachmonth
+                    messageIds:
+                      - fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                    attachmentIds:
+                      - fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                    participants:
+                      - profileId: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                        createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                        status: ASSIGNED
+                    tagsId:
+                      - fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                includes:
+                  messages:
+                    - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      summary: apiforcreatingpayrollforeachmonth
+                      status: NEW
+                      createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      description: description apiforcreatingpayrollforeachmonth
+                      attachmentIds:
+                        - fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                  tags:
+                    - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      name: payroll
+                  profiles:
+                    - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                  attachments:
+                    - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+                      createdBy: 562943d7-b4a6-4c64-b50c-88996cb0e856
+                      fileName: error.pdf
+                      url: url-info
+                      mimetype: application/pdf
+    success:
+      description: Successful response
+      content:
+        application/json:
+          examples:
+            Example 1: {}
+  schemas:
+    attachments:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          createdBy:
+            type: string
+          fileName:
+            type: string
+          url:
+            type: string
+          mimetype:
+            type: string
+      x-examples:
+        Example 1:
+          - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+            createdBy: 562943d7-b4a6-4c64-b50c-88996cb0e856
+            fileName: error.pdf
+            url: url-info
+            mimetype: application/pdf
+          - id: 4b2943d7-b4a6-4c64-b50c-88996cb0e834
+            createdBy: 12943d7-b4a6-4c64-b50c-88996cb0e8a3
+            fileName: response.jpg
+            url: url-info
+            mimetype: image/jpg
+    tags:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          createdBy:
+            type: string
+          name:
+            type: string
+      x-examples:
+        Example 1:
+          - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+            createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+            name: payroll
+    participants:
+      type: array
+      items:
+        type: object
+        properties:
+          profileId:
+            type: string
+          status:
+            $ref: '#/components/schemas/status'
+    profiles:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          createdBy:
+            type: string
+      x-examples:
+        Example 1:
+          - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+            createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+    messages:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          summary:
+            type: string
+          status:
+            $ref: '#/components/schemas/assignmentStatus'
+          createdBy:
+            type: string
+          description:
+            type: string
+          attachmentIds:
+            type: array
+            items:
+              type: string
+      x-examples:
+        Example 1:
+          - id: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+            summary: apiforcreatingpayrollforeachmonth
+            status: New
+            createdBy: fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+            description: description apiforcreatingpayrollforeachmonth
+            attachmentIds:
+              - fb2943d7-b4a6-4c64-b50c-88996cb0e8a6
+    status:
+      type: string
+      description: Use Absolved as status to delete a participant
+      enum:
+        - RESPONSIBLE
+        - ASSIGNED
+        - CONSULTED
+        - INFORMED
+        - ABSOLVED
+      x-examples:
+        Example 1: RESPONSIBLE
+    assignmentStatus:
+      type: string
+      description: Status for Messages
+      enum:
+        - NEW
+        - RESOLVED
+      x-examples:
+        Example 1: RESPONSIBLE
+      x-stoplight:
+        id: 738862f9ba963
