@@ -5,7 +5,7 @@ import {
     IRequest,
     PathParams,
     ResponseBuilder,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';

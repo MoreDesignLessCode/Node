@@ -7,7 +7,7 @@ import {
     PathParams,
     APIError,
     ResponseBuilder,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 import { match } from 'ts-pattern';
 import { validate as uuidValidate } from 'uuid';
 import { FastifyReply } from 'fastify';
@@ -20,7 +20,7 @@ import {
 import { Constants } from '../models';
 // needed to wire apip.ctx to req
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware';
+import { fastifyRequestContextMiddleware } from '@cvshealth/apip-context-middleware';
 
 export class PersonHandler implements IHandler {
     service: IService<Person>;

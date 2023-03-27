@@ -11,10 +11,10 @@ import {
     FastifyHttpProvider,
     parseUuid,
     Uuid,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 import { validate as uuidValidate } from 'uuid';
 import { Response } from 'light-my-request';
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware';
+import { fastifyRequestContextMiddleware } from '@cvshealth/apip-context-middleware';
 
 const serviceMock = jest.genMockFromModule<ContactService>(
     '../services/contact.service'
@@ -24,14 +24,14 @@ const contact = {
     id: parseUuid('778f1ecf-3287-41bc-9778-61b809827b85'),
     personId: parseUuid('728cb5aa-9eb1-4d61-a81d-9ef3026c3ab7'),
     type: 'urn:mailto',
-    value: 'developer.jd@pg.com',
+    value: 'developer.jd@cvshealth.com',
 };
 
 const invalidContact = {
     id: '5',
     personId: parseUuid('728cb5aa-9eb1-4d61-a81d-9ef3026c3ab7'),
     type: 'urn:mailto',
-    value: 'developer.jd@pg.com',
+    value: 'developer.jd@cvshealth.com',
 };
 
 let Runtime: FastifyHttpProvider;

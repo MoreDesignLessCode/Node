@@ -1,0 +1,36 @@
+{
+    "name": "ratings",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/ratings/src",
+    "projectType": "library",
+    "targets": {
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/ratings/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "packages/ratings/jest.config.ts",
+                "passWithNoTests": true,
+                "codeCoverage": true
+            }
+        },
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/ratings",
+                "tsConfig": "packages/ratings/tsconfig.lib.json",
+                "packageJson": "packages/ratings/package.json",
+                "main": "packages/ratings/src/index.ts",
+                "assets": ["packages/ratings/*.md"]
+            }
+        }
+    },
+    "tags": []
+}

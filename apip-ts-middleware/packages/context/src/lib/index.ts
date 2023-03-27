@@ -1,7 +1,7 @@
 import {
   IContext,
   DefaultRequestContext,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 import {
   FastifyInstance,
   FastifyPluginCallback,

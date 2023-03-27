@@ -1,4 +1,4 @@
-import { FastifyHttpProvider, IHandler } from '@procter-gamble/apip-api-types';
+import { FastifyHttpProvider, IHandler } from '@cvshealth/apip-api-types';
 
 export class ContactRouter {
     constructor(runtime: FastifyHttpProvider, contactHandler: IHandler) {

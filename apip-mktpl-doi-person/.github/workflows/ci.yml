@@ -77,7 +77,7 @@ jobs:
             - name: Install dependencies
               run: |
                   echo "//npm.pkg.github.com/:_authToken=$NPM_AUTH_TOKEN" > ./.npmrc
-                  echo "@procter-gamble:registry=https://npm.pkg.github.com" >> ./.npmrc
+                  echo "@cvshealth:registry=https://npm.pkg.github.com" >> ./.npmrc
                   echo "Running yarn install --frozen-lockfile"
                   yarn install --frozen-lockfile
               env:

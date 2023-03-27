@@ -1,10 +1,10 @@
 {
-  "name": "@procter-gamble/apip-api-types",
+  "name": "@cvshealth/apip-api-types",
   "version": "0.0.1-semantic-version",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/procter-gamble/apip-ts-types"
+    "url": "https://github.com/cvshealth/apip-ts-types"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

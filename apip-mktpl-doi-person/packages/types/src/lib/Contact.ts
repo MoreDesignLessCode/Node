@@ -1,4 +1,4 @@
-import { Uuid, IResource } from '@procter-gamble/apip-api-types';
+import { Uuid, IResource } from '@cvshealth/apip-api-types';
 import { Nullable } from './Nullable';
 
 export interface IContact extends IResource {

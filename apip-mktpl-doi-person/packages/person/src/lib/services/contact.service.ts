@@ -4,7 +4,7 @@ import {
     Result,
     IService,
     IContext,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 import { Contact } from '../models/contact';
 
 export class ContactService implements IService<Contact> {

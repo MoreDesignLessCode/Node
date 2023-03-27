@@ -1,10 +1,10 @@
 {
-    "name": "@procter-gamble/apip-mktpl-das-person",
+    "name": "@cvshealth/apip-mktpl-das-person",
     "version": "0.0.1-semantic-version",
     "license": "SEE LICENSE IN LICENSE",
     "repository": {
         "type": "git",
-        "url": "https://github.com/procter-gamble/apip-mktpl-das-person-types"
+        "url": "https://github.com/cvshealth/apip-mktpl-das-person-types"
     },
     "publishConfig": {
         "registry": "https://npm.pkg.github.com"

@@ -77,7 +77,7 @@ This is an example of how to list things you need to use the software and how to
 1. Clone the repo
 
    ```sh
-   git clone https://github.com/procter-gamble/eai-apip-refarch-module-federation-example.git
+   git clone https://github.com/cvshealth/eai-apip-refarch-module-federation-example.git
    ```
 
 1. For each directory (`home`, `pdp`, `cart`, `reviews`, `server` do the following.
@@ -120,7 +120,7 @@ Each application runs on a separate port:
 
 Once all apps are running, navigate to http://localhost:3000 to begin using the stitched together site.
 
-Most of the magic is happening in the `webpack.config.js` files within the `home`, `pdp`, `cart`, and `reviews` apps. Looking at the `ModuleFederationPlugin` settings in each file will show you what is being exposed (`exposes: {...}`- see [cart's webpack](https://github.com/procter-gamble/eai-apip-refarch-module-federation-example/blob/main/cart/webpack.config.js#L51) ) and what is being consumed (`remotes: {...}`).
+Most of the magic is happening in the `webpack.config.js` files within the `home`, `pdp`, `cart`, and `reviews` apps. Looking at the `ModuleFederationPlugin` settings in each file will show you what is being exposed (`exposes: {...}`- see [cart's webpack](https://github.com/cvshealth/eai-apip-refarch-module-federation-example/blob/main/cart/webpack.config.js#L51) ) and what is being consumed (`remotes: {...}`).
 
 The exposed data becomes available via a `remoteEntry.js` file that Webpack creates in the `dist` directory at the root of each app.
 

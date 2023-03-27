@@ -15,7 +15,7 @@ module.exports = {
           name: 'conventionalchangelog',
           issuePrefixes: ['APIP-'],
           issueUrlFormat:
-            'https://jira-pg.atlassian.net/browse/{{prefix}}{{id}}',
+            'https://jiracvsh.atlassian.net/browse/{{prefix}}{{id}}',
         },
       },
     ],

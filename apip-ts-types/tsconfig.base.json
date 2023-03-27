@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@procter-gamble/apip-api-types": ["packages/api/src/index.ts"]
+      "@cvshealth/apip-api-types": ["packages/api/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"],

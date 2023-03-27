@@ -1,5 +1,5 @@
 {
-  "name": "@procter-gamble/apip-ts-middleware",
+  "name": "@cvshealth/apip-ts-middleware",
   "version": "0.0.0",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/procter-gamble/apip-ts-middleware"
+    "url": "https://github.com/cvshealth/apip-ts-middleware"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -26,7 +26,7 @@
     ]
   },
   "dependencies": {
-    "@procter-gamble/apip-api-types": "^1.0.8",
+    "@cvshealth/apip-api-types": "^1.0.8",
     "fast-jwt": "^2.2.0",
     "fastify-plugin": "^4.5.0"
   },

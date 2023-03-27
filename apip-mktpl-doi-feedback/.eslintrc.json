@@ -1,0 +1,75 @@
+// {
+//     "root": true,
+//     "ignorePatterns": ["**/*"],
+//     "plugins": ["@nrwl/nx", "prettier", "prefer-arrow", "must-use-await"],
+//     "overrides": [
+//         {
+//             "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+//             "rules": {
+//                 "@nrwl/nx/enforce-module-boundaries": [
+//                     "error",
+//                     {
+//                         "enforceBuildableLibDependency": true,
+//                         "allow": [],
+//                         "depConstraints": [
+//                             {
+//                                 "sourceTag": "*",
+//                                 "onlyDependOnLibsWithTags": ["*"]
+//                             }
+//                         ]
+//                     }
+//                 ]
+//             }
+//         },
+//         {
+//             "files": ["*.ts", "*.tsx"],
+//             "extends": ["plugin:@nrwl/nx/typescript"],
+//             "rules": {}
+//         },
+//         {
+//             "files": ["*.js", "*.jsx"],
+//             "extends": ["plugin:@nrwl/nx/javascript"],
+//             "rules": {}
+//         },
+//         {
+//             "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+//             "env": {
+//                 "jest": true
+//             },
+//             "rules": {}
+//         }
+//     ],
+//     "rules": {
+//         "no-console": 1,
+//         "prettier/prettier": 2,
+//         "require-jsdoc": 0,
+//         "valid-jsdoc": 0,
+//         "prefer-template": 1,
+//         "no-useless-concat": 1,
+//         "must-use-await/must-use-await": 1,
+//         "prefer-arrow/prefer-arrow-functions": [
+//             "error",
+//             {
+//                 "disallowPrototype": true,
+//                 "singleReturnOnly": false,
+//                 "classPropertiesAllowed": false
+//             }
+//         ],
+//         "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
+//         "func-style": ["error", "expression", { "allowArrowFunctions": true }],
+//         "no-unused-vars": 0,
+//         "@typescript-eslint/no-unused-vars": [
+//             "warn", // or "error"
+//             {
+//                 "argsIgnorePattern": "^_",
+//                 "varsIgnorePattern": "^_",
+//                 "caughtErrorsIgnorePattern": "^_"
+//             }
+//         ]
+//     },
+//     "extends": [
+//         "eslint:recommended",
+//         "plugin:@typescript-eslint/recommended",
+//         "prettier"
+//     ]
+// }

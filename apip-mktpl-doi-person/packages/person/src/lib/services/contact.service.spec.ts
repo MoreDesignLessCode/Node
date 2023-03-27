@@ -9,7 +9,7 @@ import {
     Uuid,
     IContext,
     DefaultRequestContext,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 import { match } from 'ts-pattern';
 
 const repositoryMock = jest.genMockFromModule<ContactRepository>(
@@ -20,7 +20,7 @@ const contact: Contact = {
     id: Uuid(),
     personId: Uuid(),
     type: 'urn:mailto',
-    value: 'developer.jd@pg.com',
+    value: 'developer.jd@cvshealth.com',
 };
 
 const context: IContext = new DefaultRequestContext();

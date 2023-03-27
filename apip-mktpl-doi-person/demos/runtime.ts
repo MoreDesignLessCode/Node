@@ -13,11 +13,11 @@ import {
     Contact,
     ContactMemoryStorageProvider,
 } from '../dist/packages/person';
-import { FastifyHttpProvider, parseUuid } from '@procter-gamble/apip-api-types';
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware';
-import { JwtMiddleware, JwtOptions } from '@procter-gamble/apip-jwt-middleware';
+import { FastifyHttpProvider, parseUuid } from '@cvshealth/apip-api-types';
+import { fastifyRequestContextMiddleware } from '@cvshealth/apip-context-middleware';
+import { JwtMiddleware, JwtOptions } from '@cvshealth/apip-jwt-middleware';
 import * as dotenv from 'dotenv';
-import { IStorageProvider } from '@procter-gamble/apip-api-types';
+import { IStorageProvider } from '@cvshealth/apip-api-types';
 
 dotenv.config();
 
@@ -62,7 +62,7 @@ const testContactData = [
         id: parseUuid('778f1ecf-3287-41bc-9778-61b809827b85'),
         personId: parseUuid('728cb5aa-9eb1-4d61-a81d-9ef3026c3ab7'),
         type: 'urn:mailto',
-        value: 'developer.jd@pg.com',
+        value: 'developer.jd@cvshealth.com',
     },
     {
         id: parseUuid('91da57f9-f772-4dde-8ea5-1b9bf0818108'),

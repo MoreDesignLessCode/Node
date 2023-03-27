@@ -1,4 +1,4 @@
-import { parseUuid } from '@procter-gamble/apip-api-types';
+import { parseUuid } from '@cvshealth/apip-api-types';
 import { PersonSchema } from './person';
 
 describe('person validation tests', () => {

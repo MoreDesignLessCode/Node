@@ -1,0 +1,42 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "esnext",
+        "lib": ["es2017", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@cvshealth/apip-mktpl-doi-person": [
+                "packages/person/src/index.ts"
+            ],
+             "@cvshealth/apip-mktpl-doi-attachments": [
+                "packages/attachments/src/index.ts"
+            ],
+             "@cvshealth/apip-mktpl-doi-messages": [
+                "packages/messages/src/index.ts"
+            ],
+             "@cvshealth/apip-mktpl-doi-tickets": [
+                "packages/tickets/src/index.ts"
+            ],
+            "@cvshealth/apip-mktpl-doi-person-sdk": [
+                "packages/sdk/src/index.ts"
+            ],
+            "@cvshealth/apip-mktpl-doi-feedback-types": [
+                "packages/types/src/index.ts"
+            ]
+        }
+    },
+    "exclude": ["node_modules", "tmp"],
+    "excludeFiles": ["*.md"],
+    "files": [],
+    "include": []
+}

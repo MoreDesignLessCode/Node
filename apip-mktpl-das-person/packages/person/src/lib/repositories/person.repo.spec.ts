@@ -2,7 +2,7 @@ import {
     parseUuid,
     DefaultRequestContext,
     IContext,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 import { GeneralAPIError } from '../errors';
 import { PersonRepository } from './person.repo';
 import { match } from 'ts-pattern';

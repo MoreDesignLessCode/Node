@@ -4,7 +4,7 @@ import {
     DefaultRequestContext,
     IContext,
     parseUuid,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 import * as dotenv from 'dotenv';
 import * as Pg from 'pg';
 import { PersonPgStorageProvider } from './person.pg.storage.provider';

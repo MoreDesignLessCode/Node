@@ -1,4 +1,4 @@
-import { Uuid, APIError } from '@procter-gamble/apip-api-types';
+import { Uuid, APIError } from '@cvshealth/apip-api-types';
 import { Constants } from '../models/constants';
 
 export class GeneralAPIError extends APIError {

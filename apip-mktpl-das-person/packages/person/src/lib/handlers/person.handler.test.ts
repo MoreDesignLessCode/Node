@@ -2,11 +2,11 @@ import {
     FastifyHttpProvider,
     parseUuid,
     Uuid,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 import { validate as uuidValidate } from 'uuid';
 import { Response } from 'light-my-request';
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware';
-import { JwtMiddleware, JwtOptions } from '@procter-gamble/apip-jwt-middleware';
+import { fastifyRequestContextMiddleware } from '@cvshealth/apip-context-middleware';
+import { JwtMiddleware, JwtOptions } from '@cvshealth/apip-jwt-middleware';
 import { createSigner } from 'fast-jwt';
 import { PersonService } from '../services/person.service';
 import { PersonRouter } from './person.router';

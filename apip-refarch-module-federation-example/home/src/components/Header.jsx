@@ -14,7 +14,7 @@ export default function Header() {
             <img
               className="h-full"
               src={pglogo}
-              alt="Procter and Gamble logo"
+              alt="CVSHealth logo"
             />
           </Link>
         </div>

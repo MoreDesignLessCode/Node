@@ -1,4 +1,4 @@
-Copyright (c) Procter & Gamble . All rights reserved
+Copyright (c) CVSHealth . All rights reserved
 
-All content of this repository is proprietary and confidential, and belongs to Procter & Gamble.
+All content of this repository is proprietary and confidential, and belongs to CVSHealth.
 Unauthorized copying of this code, via any medium, is strictly prohibited

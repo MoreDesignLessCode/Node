@@ -1,4 +1,4 @@
-import { IContext } from '@procter-gamble/apip-api-types';
+import { IContext } from '@cvshealth/apip-api-types';
 import {
   FastifyPluginCallback,
   FastifyReply,

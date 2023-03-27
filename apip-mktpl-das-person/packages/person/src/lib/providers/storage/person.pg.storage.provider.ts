@@ -3,7 +3,7 @@ import {
     Result,
     IStorageProvider,
     IContext,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 import { GeneralAPIError, ResourceNotFoundError } from '../../errors';
 import { Person, Constants, Name } from '../../models';
 import { formatString } from '../../utils';

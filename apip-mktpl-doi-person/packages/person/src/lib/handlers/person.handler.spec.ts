@@ -3,10 +3,10 @@ import {
     FastifyHttpProvider,
     parseUuid,
     Uuid,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 import { validate as uuidValidate } from 'uuid';
 import { Response } from 'light-my-request';
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware';
+import { fastifyRequestContextMiddleware } from '@cvshealth/apip-context-middleware';
 import { PersonService } from '../services/person.service';
 import { PersonRouter } from './person.router';
 import { PersonHandler } from './person.handler';

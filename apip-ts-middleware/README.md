@@ -1,7 +1,7 @@
 # API Program Typescript Middlewares
 
 These middlewares are to be used in conjunction with API Program's Typescript
-Types (`@procter-gamble/apip-api-types`) for API development in a hexagonal
+Types (`@cvshealth/apip-api-types`) for API development in a hexagonal
 architecture pattern.
 
 These were built out of necessity across the many Developer Domain 

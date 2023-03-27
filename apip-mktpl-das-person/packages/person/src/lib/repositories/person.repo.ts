@@ -4,7 +4,7 @@ import {
     IRepository,
     IStorageProvider,
     IContext,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 import { StorageProviderUndefinedError } from '../errors';
 import { Constants } from '../models';
 import { Person } from '../models/person';

@@ -5,9 +5,9 @@ import {
     PersonService,
     PersonPgStorageProvider,
 } from '../dist/packages/person';
-import { FastifyHttpProvider } from '@procter-gamble/apip-api-types';
-import { fastifyRequestContextMiddleware } from '@procter-gamble/apip-context-middleware';
-import { JwtMiddleware, JwtOptions } from '@procter-gamble/apip-jwt-middleware';
+import { FastifyHttpProvider } from '@cvshealth/apip-api-types';
+import { fastifyRequestContextMiddleware } from '@cvshealth/apip-context-middleware';
+import { JwtMiddleware, JwtOptions } from '@cvshealth/apip-jwt-middleware';
 import * as dotenv from 'dotenv';
 
 dotenv.config();

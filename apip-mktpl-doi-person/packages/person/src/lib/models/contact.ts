@@ -1,8 +1,8 @@
 import {
     IContact,
     Nullable,
-} from '@procter-gamble/apip-mktpl-doi-person-types';
-import { Uuid } from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-mktpl-doi-person-types';
+import { Uuid } from '@cvshealth/apip-api-types';
 import * as Joi from 'joi';
 
 export const ContactSchema = Joi.object({

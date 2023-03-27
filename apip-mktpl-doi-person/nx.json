@@ -14,7 +14,7 @@
     },
     "extends": "nx/presets/npm.json",
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
-    "npmScope": "@procter-gamble",
+    "npmScope": "@cvshealth",
     "workspaceLayout": {
         "libsDir": "packages",
         "appsDir": "demos"

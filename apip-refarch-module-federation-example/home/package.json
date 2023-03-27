@@ -11,7 +11,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "author": {
     "name": "Lucas Frazier",
-    "email": "frazier.la@pg.com"
+    "email": "frazier.la@cvshealth.com"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",

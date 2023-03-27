@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@procter-gamble/apip-mktpl-types": ["packages/types/src/index.ts"]
+      "@cvshealth/apip-mktpl-types": ["packages/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"],

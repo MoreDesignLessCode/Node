@@ -1,5 +1,5 @@
 {
-  "name": "@procter-gamble/apip-ts-types",
+  "name": "@cvshealth/apip-ts-types",
   "version": "0.0.0",
   "license": "UNLICENSED",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/procter-gamble/apip-ts-types"
+    "url": "https://github.com/cvshealth/apip-ts-types"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

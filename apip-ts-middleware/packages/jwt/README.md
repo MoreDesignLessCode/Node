@@ -5,11 +5,11 @@ the API Program Context Middleware plugin (a dependency);
 
 ## Usage
 
-1. Import the plugin `import {JwtMiddleware} from '@procter-gamble/apip-jwt-middleware'`
+1. Import the plugin `import {JwtMiddleware} from '@cvshealth/apip-jwt-middleware'`
 1. Register the Plugin
 
 ```
-import { JwtMiddleware } from '@procter-gamble/apip-jwt-middleware'
+import { JwtMiddleware } from '@cvshealth/apip-jwt-middleware'
 
 ....
 
@@ -24,7 +24,7 @@ app.register(JwtMiddleware, { key: 'secret', complete: true })
 You can override the default error handler by passing in the option `errorHandler`
 
 ```
-import { JwtMiddleware } from '@procter-gamble/apip-jwt-middleware'
+import { JwtMiddleware } from '@cvshealth/apip-jwt-middleware'
 
 ....
 errorFn = (err, reply) => {

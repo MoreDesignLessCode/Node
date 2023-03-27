@@ -1,0 +1,44 @@
+{
+    "name": "types",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/types/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "dependsOn": ["^build"],
+            "options": {
+                "outputPath": "dist/packages/types",
+                "tsConfig": "packages/types/tsconfig.lib.json",
+                "packageJson": "packages/types/package.json",
+                "main": "packages/types/src/index.ts",
+                "assets": ["packages/types/*.md"]
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/types/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "packages/types/jest.config.ts",
+                "passWithNoTests": true
+            }
+        },
+        "release": {
+            "executor": "nx:run-commands",
+            "outputs": [],
+            "options": {
+                "command": "npx semantic-release-plus --extends ./packages/types/release.config.js",
+                "parallel": false
+            }
+        }
+    },
+    "tags": []
+}

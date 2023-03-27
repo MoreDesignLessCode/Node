@@ -1,0 +1,42 @@
+{
+    "name": "ticket",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/ticket/src",
+    "projectType": "library",
+    "targets": {
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/ticket/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "packages/ticket/jest.config.ts",
+                "passWithNoTests": true,
+                "codeCoverage": true
+            }
+        },
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/ticket",
+                "tsConfig": "packages/ticket/tsconfig.lib.json",
+                "packageJson": "packages/ticket/package.json",
+                "main": "packages/ticket/src/index.ts",
+                "assets": ["packages/ticket/*.md"]
+            }
+        }
+        // "nodemon": {
+        //     "executor": "nx:run-commands",
+        //     "options": {
+        //         "command": "nodemon"
+        //     }
+        // }
+    },
+    "tags": []
+}

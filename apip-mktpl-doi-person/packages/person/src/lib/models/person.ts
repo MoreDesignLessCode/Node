@@ -1,5 +1,5 @@
-import { IPerson, Nullable } from '@procter-gamble/apip-mktpl-doi-person-types';
-import { Uuid } from '@procter-gamble/apip-api-types';
+import { IPerson, Nullable } from '@cvshealth/apip-mktpl-doi-person-types';
+import { Uuid } from '@cvshealth/apip-api-types';
 import * as Joi from 'joi';
 
 export const PersonSchema = Joi.object({

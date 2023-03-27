@@ -8,7 +8,7 @@ import {
 import {
     DefaultRequestContext,
     parseUuid,
-} from '@procter-gamble/apip-api-types';
+} from '@cvshealth/apip-api-types';
 
 let testContactRepository: ContactMemoryStorageProvider;
 let testContacts: Contact[];
@@ -22,7 +22,7 @@ beforeEach(() => {
             id: parseUuid('778f1ecf-3287-41bc-9778-61b809827b85'),
             personId: parseUuid('728cb5aa-9eb1-4d61-a81d-9ef3026c3ab7'),
             type: 'urn:mailto',
-            value: 'developer.jd@pg.com',
+            value: 'developer.jd@cvshealth.com',
         },
         {
             id: parseUuid('91da57f9-f772-4dde-8ea5-1b9bf0818108'),
@@ -48,7 +48,7 @@ beforeEach(() => {
         id: parseUuid('778f1ecf-3287-41bc-9778-61b809827b85'),
         personId: parseUuid('728cb5aa-9eb1-4d61-a81d-9ef3026c3ab7'),
         type: 'urn:mailto',
-        value: 'seniordeveloper.jd@pg.com',
+        value: 'seniordeveloper.jd@cvshealth.com',
     };
     testContact = {
         id: parseUuid('df4da5ef-db03-49ca-aea4-3238fcdf96cb'),
@@ -60,7 +60,7 @@ beforeEach(() => {
         id: parseUuid('b3c77a22-d78a-4e60-b798-6e90492391e1'),
         personId: parseUuid('728cb5aa-9eb1-4d61-a81d-9ef3026c3ab7'),
         type: 'urn:fax',
-        value: 'developerfaxmachine@pg.com',
+        value: 'developerfaxmachine@cvshealth.com',
     };
 });
 

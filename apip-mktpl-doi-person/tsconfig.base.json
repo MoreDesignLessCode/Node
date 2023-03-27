@@ -15,13 +15,13 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@procter-gamble/apip-mktpl-doi-person": [
+            "@cvshealth/apip-mktpl-doi-person": [
                 "packages/person/src/index.ts"
             ],
-            "@procter-gamble/apip-mktpl-doi-person-sdk": [
+            "@cvshealth/apip-mktpl-doi-person-sdk": [
                 "packages/sdk/src/index.ts"
             ],
-            "@procter-gamble/apip-mktpl-doi-person-types": [
+            "@cvshealth/apip-mktpl-doi-person-types": [
                 "packages/types/src/index.ts"
             ]
         }

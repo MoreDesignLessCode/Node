@@ -2295,9 +2295,9 @@
     "@pnpm/network.ca-file" "^1.0.1"
     config-chain "^1.1.11"
 
-"@procter-gamble/apip-api-types@^1.0.8":
+"@cvshealth/apip-api-types@^1.0.8":
   version "1.0.8"
-  resolved "https://npm.pkg.github.com/download/@procter-gamble/apip-api-types/1.0.8/32455c48da0b8605c4d25963828847f8fa5e49a6#32455c48da0b8605c4d25963828847f8fa5e49a6"
+  resolved "https://npm.pkg.github.com/download/@cvshealth/apip-api-types/1.0.8/32455c48da0b8605c4d25963828847f8fa5e49a6#32455c48da0b8605c4d25963828847f8fa5e49a6"
   integrity sha512-ZTcB2+GR8m5Jx9uKS0rHLRF05H6Fb4tXU7QEufi3GQ/cI+K+bgNQT0+QeHk0oCNfJ8guUde+U2mZWql7Mn1GjA==
 
 "@rollup/plugin-babel@^5.3.0":

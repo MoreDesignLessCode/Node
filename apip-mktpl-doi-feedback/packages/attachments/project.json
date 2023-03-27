@@ -1,0 +1,36 @@
+{
+    "name": "attachments",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/attachments/src",
+    "projectType": "library",
+    "targets": {
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["packages/attachments/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+            "options": {
+                "jestConfig": "packages/attachments/jest.config.ts",
+                "passWithNoTests": true,
+                "codeCoverage": true
+            }
+        },
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/packages/attachments",
+                "tsConfig": "packages/attachments/tsconfig.lib.json",
+                "packageJson": "packages/attachments/package.json",
+                "main": "packages/attachments/src/index.ts",
+                "assets": ["packages/attachments/*.md"]
+            }
+        }
+    },
+    "tags": []
+}

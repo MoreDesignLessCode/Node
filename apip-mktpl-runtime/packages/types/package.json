@@ -1,10 +1,10 @@
 {
-  "name": "@procter-gamble/apip-mktpl-types",
+  "name": "@cvshealth/apip-mktpl-types",
   "version": "0.0.1-semantic-version",
   "license":"UNLICENSE",
   "repository": {
     "type": "git",
-    "url": "https://github.com/procter-gamble/apip-mktpl-runtime"
+    "url": "https://github.com/cvshealth/apip-mktpl-runtime"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
