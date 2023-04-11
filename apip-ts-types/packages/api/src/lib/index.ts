@@ -32,3 +32,7 @@ export {
   IMeta,
 } from './interfaces/meta.interface';
 export { ResponseBuilder } from './impl/response.builder';
+export { GeneralAPIError } from './impl/errors/general.api.error';
+export { ResourceNotFoundError } from './impl/errors/resource.not.found.error';
+export { StorageProviderUndefinedError } from './impl/errors/storage.provider.undefined.error';
+export { ValidationAPIError } from './impl/errors/validation.api.error';

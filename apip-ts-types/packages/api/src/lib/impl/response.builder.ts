@@ -7,7 +7,7 @@ import { Includes } from '../types/includes';
 export class ResponseBuilder {
   response: Response;
   setData(value: IResource[]): void {
-    this.response.data = value;
+    this.response.data = [].concat(value);
   }
   setErrors(value: APIError): void {
     this.response.errors = value;
@@ -18,16 +18,27 @@ export class ResponseBuilder {
   setIncludes(value: Includes): void {
     this.response.includes = value;
   }
-  setInclude(namedKey: string, value: IResource[]): void {
-    this.response.includes = {
-      [namedKey]: value,
-    };
+  addIncludes(namedKey: string, value: IResource): void {
+    if(!this.response.includes){
+        this.response.includes= {}
+    }
+    const toBeIncluded = [].concat(value);
+    if (this.response.includes[namedKey]) {
+      this.response.includes[namedKey] =
+        this.response.includes[namedKey].concat(toBeIncluded);
+    } else {
+      this.response.includes[namedKey] = toBeIncluded;
+    }
   }
   appendInclude(namedKey: string, value: IResource): void {
+    if(!this.response.includes){
+        this.response.includes= {}
+    }
+    const toBeIncluded = [].concat(value);
     if (this.response.includes[namedKey]) {
-      this.response.includes[namedKey].push(value);
+      this.response.includes[namedKey] = this.response.includes[namedKey].concat(toBeIncluded);
     } else {
-      this.response.includes[namedKey] = [value];
+      this.response.includes[namedKey] = toBeIncluded;
     }
   }
 

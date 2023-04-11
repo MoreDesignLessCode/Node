@@ -123,24 +123,205 @@ describe('Response Builder', () => {
     expect((fixture.build() as Response).meta).toEqual(meta);
   });
 
-  it('test setIncludes', () => {
-    const includesData = [{ id: Uuid(), name: 'test' }];
-    const includes = {
-      test: includesData,
-    };
-    const fixture = new ResponseBuilder();
-    fixture.setIncludes(includes);
-    expect(fixture).toBeInstanceOf(ResponseBuilder);
-    expect((fixture.build() as Response).includes).toEqual(includes);
+  [{
+      name: 'Set Includes',
+      given: {
+          includes: {
+            foo: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' }]
+          }
+      },
+      expected: {
+        foo: [
+          { id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' },
+        ]
+      }
+  },{
+      name: 'Set Null Includes',
+      given: {
+          includes: null
+      },
+      expected: null 
+  }
+  ].forEach(({name, given, expected}) => {
+    it(`${name}`, ()=>{
+        const fixture = new ResponseBuilder()
+        fixture.setIncludes(given.includes);
+        expect(fixture).toBeInstanceOf(ResponseBuilder);
+        expect((fixture.build() as Response).includes).toEqual(expected);
+    })
   });
-  it('test setInclude', () => {
-    const includesData = [{ id: Uuid(), name: 'test' }];
-    const includes = {
-      test: includesData,
-    };
-    const fixture = new ResponseBuilder();
-    fixture.setInclude('test', includesData);
-    expect(fixture).toBeInstanceOf(ResponseBuilder);
-    expect((fixture.build() as Response).includes).toEqual(includes);
+  
+  [{
+      name: 'Add to Null Includes',
+      given: {
+          toBeIncluded: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' }]
+      },
+      expected: {
+        foo: [
+          { id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' },
+        ]
+      }
+  }].forEach(({name, given, expected}) => {
+    it(`${name}`, ()=>{
+        const fixture = new ResponseBuilder()
+        fixture.addIncludes('foo',given.toBeIncluded);
+        expect(fixture).toBeInstanceOf(ResponseBuilder);
+        expect((fixture.build() as Response).includes).toEqual(expected);
+    })
+  });
+  [{
+      name: 'Append to Null Includes',
+      given: {
+          toBeIncluded: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' }]
+      },
+      expected: {
+        foo: [
+          { id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' },
+        ]
+      }
+  }].forEach(({name, given, expected}) => {
+    it(`${name}`, ()=>{
+        const fixture = new ResponseBuilder()
+        fixture.appendInclude('foo',given.toBeIncluded);
+        expect(fixture).toBeInstanceOf(ResponseBuilder);
+        expect((fixture.build() as Response).includes).toEqual(expected);
+    })
+  });
+
+  [
+    {
+      name: 'add Includes with Array to existing Includes',
+      given: {
+        includes: {
+          foo: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' }],
+        },
+        toBeIncluded: [
+          { id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2', name: 'foo2' },
+        ],
+      },
+      expected: {
+        foo: [
+          { id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' },
+          { id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2', name: 'foo2' },
+        ],
+      },
+    },{
+
+      name: 'add Includes with Object to existing Includes',
+      given: {
+        includes: {
+          foo: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' }],
+        },
+        toBeIncluded: 
+          { id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2', name: 'foo2' },
+        
+      },
+      expected: {
+        foo: [
+          { id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' },
+          { id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2', name: 'foo2' },
+        ],
+      },
+    },
+    {
+      name: 'addIncludes to empty Includes',
+      given: {
+        includes: {
+          buzz: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'buzz' }],
+        },
+        toBeIncluded: [
+          { id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2', name: 'foo2' },
+        ],
+      },
+      expected: {
+        foo: [{ id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2', name: 'foo2' }],
+        buzz: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'buzz' }],
+      },
+    },
+  ].forEach(({ name, given, expected }) => {
+    it(`${name}`, () => {
+      const fixture = new ResponseBuilder();
+      fixture.setIncludes(given.includes);
+      fixture.addIncludes('foo', given.toBeIncluded);
+      expect(fixture).toBeInstanceOf(ResponseBuilder);
+      expect((fixture.build() as Response).includes).toEqual(expected);
+    });
+  });
+
+  [
+    {
+      name: 'appendInclude to existing Included',
+      given: {
+        includes: {
+          foo: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' }],
+        },
+        toBeIncluded: {
+          id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2',
+          name: 'foo2',
+        },
+      },
+      expected: {
+        foo: [
+          { id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' },
+          { id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2', name: 'foo2' },
+        ],
+      },
+    },
+    {
+      name: 'appendInclude with Array to existing Included',
+      given: {
+        includes: {
+          foo: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' }],
+        },
+        toBeIncluded: [{
+          id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2',
+          name: 'foo2',
+        }],
+      },
+      expected: {
+        foo: [
+          { id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'foo1' },
+          { id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2', name: 'foo2' },
+        ],
+      },
+    },
+    {
+      name: 'appendInclude to non existent Included',
+      given: {
+        includes: {
+          buzz: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'buzz' }],
+        },
+        toBeIncluded: 
+          { id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2', name: 'foo2' },
+        
+      },
+      expected: {
+        foo: [{ id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2', name: 'foo2' }],
+        buzz: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'buzz' }],
+      },
+    },
+    {
+      name: 'appendInclude with Array to non existent Included',
+      given: {
+        includes: {
+          buzz: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'buzz' }],
+        },
+        toBeIncluded: 
+          { id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2', name: 'foo2' },
+        
+      },
+      expected: {
+        foo: [{ id: '176a7f37-d6f4-415e-b9e9-1d055bdfe5b2', name: 'foo2' }],
+        buzz: [{ id: 'c0efba86-7355-48e4-aac2-f095cd5d48ad', name: 'buzz' }],
+      },
+    }
+  ].forEach(({ name, given, expected }) => {
+    it(`${name}`, () => {
+      const fixture = new ResponseBuilder();
+      fixture.setIncludes(given.includes);
+      fixture.appendInclude('foo', given.toBeIncluded);
+      expect(fixture).toBeInstanceOf(ResponseBuilder);
+      expect((fixture.build() as Response).includes).toEqual(expected);
+    });
   });
 });
